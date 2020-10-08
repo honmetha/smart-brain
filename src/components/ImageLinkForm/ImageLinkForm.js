@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const ImageLinkForm = () => {
+const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
   return (
     <div>
       <p>
-        {'This Magic Brain will detect faces in your pictures. Give it a try.'}
+        {"This Magic Brain will detect faces in your pictures. Give it a try."}
       </p>
       <div>
-        <input type="text" />
-        <button>Detect</button>
+        <input type="text" onChange={onInputChange} />
+        <button onClick={onButtonSubmit}>Detect</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ImageLinkForm
+export default ImageLinkForm;

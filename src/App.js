@@ -19,13 +19,26 @@ const particlesOptions = {
 };
 
 function App() {
+  // const [input, setInput] = useState("");
+
+  const onInputChange = (event) => {
+    console.log(event.target.value);
+  };
+
+  const onButtonSubmit = () => {
+    console.log("click!!");
+  };
+
   return (
     <div className="App">
       <Particles className="particles" params={particlesOptions} />
       <Navigation />
       <Logo />
       <Rank />
-      <ImageLinkForm />
+      <ImageLinkForm
+        onInputChange={onInputChange}
+        onButtonSubmit={onButtonSubmit}
+      />
       {/* <FaceRecognition /> */}
     </div>
   );
