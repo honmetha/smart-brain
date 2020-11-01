@@ -33,7 +33,7 @@ function App() {
   const onButtonSubmit = () => {
     setImageUrl(input);
     app.models
-      .predict(Clarifai.COLOR_MODEL, input)
+      .predict(Clarifai.FACE_DETECT_MODEL, input)
       .then((response) => {
         console.log(response);
       })

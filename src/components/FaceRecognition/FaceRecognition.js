@@ -2,8 +2,8 @@ import React from "react";
 
 const FaceRecognition = ({ imageUrl }) => {
   return (
-    <div>
-      <img alt="" src={imageUrl} />
+    <div style={{ marginTop: "2rem" }}>
+      <img alt="" src={imageUrl} width="500px" height="auto" />
     </div>
   );
 };
