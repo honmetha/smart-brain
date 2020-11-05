@@ -7,6 +7,7 @@ import Logo from "./components/Logo/Logo";
 import Rank from "./components/Rank/Rank";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
+import Signin from "./components/Signin/Signin";
 
 const app = new Clarifai.App({ apiKey: "6eba621f55704ccb9b69296fee0c1156" });
 
@@ -26,6 +27,7 @@ function App() {
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [box, setBox] = useState({});
+  const [route, setRoute] = useState("signin");
 
   const calculateFaceLocation = (data) => {
     const clarifaiFace =
@@ -62,13 +64,19 @@ function App() {
     <div className="App">
       <Particles className="particles" params={particlesOptions} />
       <Navigation />
-      <Logo />
-      <Rank />
-      <ImageLinkForm
-        onInputChange={onInputChange}
-        onButtonSubmit={onButtonSubmit}
-      />
-      <FaceRecognition box={box} imageUrl={imageUrl} />
+      {route === "signin" ? (
+        <Signin />
+      ) : (
+        <div>
+          <Logo />
+          <Rank />
+          <ImageLinkForm
+            onInputChange={onInputChange}
+            onButtonSubmit={onButtonSubmit}
+          />
+          <FaceRecognition box={box} imageUrl={imageUrl} />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,0 +1,7 @@
+.signin-card {
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 3px 3px 4px;
+}
