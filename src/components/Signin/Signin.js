@@ -1,10 +1,9 @@
 import React from "react";
-import "./Signin.css";
 
 const Signin = ({ onRouteChange }) => {
   return (
     <main style={{ display: "flex", justifyContent: "center" }}>
-      <div className="signin-card">
+      <div className="auth-card">
         Signin
         <div>
           Username:
@@ -15,7 +14,12 @@ const Signin = ({ onRouteChange }) => {
         <div>
           <button onClick={() => onRouteChange("home")}>Sign in</button>
         </div>
-        <div>Register</div>
+        <p
+          onClick={() => onRouteChange("register")}
+          style={{ cursor: "pointer" }}
+        >
+          Register
+        </p>
       </div>
     </main>
   );
