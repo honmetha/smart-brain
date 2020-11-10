@@ -60,12 +60,16 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const onRouteChange = (route) => {
+    setRoute(route);
+  };
+
   return (
     <div className="App">
       <Particles className="particles" params={particlesOptions} />
-      <Navigation />
+      <Navigation onRouteChange={onRouteChange} />
       {route === "signin" ? (
-        <Signin />
+        <Signin onRouteChange={onRouteChange} />
       ) : (
         <div>
           <Logo />

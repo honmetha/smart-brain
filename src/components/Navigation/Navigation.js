@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navigation = () => {
+const Navigation = ({ onRouteChange }) => {
   return (
     <nav
       style={{
@@ -9,7 +9,9 @@ const Navigation = () => {
         paddingRight: "2rem",
       }}
     >
-      <p>Sign Out</p>
+      <p onClick={() => onRouteChange("signin")} style={{ cursor: "pointer" }}>
+        Sign Out
+      </p>
     </nav>
   );
 };
