@@ -15,7 +15,7 @@ const Register = ({ onRouteChange }) => {
         </div>
         <div>
           Password:
-          <input />
+          <input type="password" />
         </div>
         <div>
           <button onClick={() => onRouteChange("home")}>Register</button>

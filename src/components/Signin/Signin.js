@@ -9,7 +9,7 @@ const Signin = ({ onRouteChange }) => {
           Username:
           <input />
           Password:
-          <input />
+          <input type="password" />
         </div>
         <div>
           <button onClick={() => onRouteChange("home")}>Sign in</button>

@@ -29,7 +29,7 @@ function App() {
   const [imageUrl, setImageUrl] = useState("");
   const [box, setBox] = useState({});
   const [route, setRoute] = useState("signin");
-  const isSignedIn = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const calculateFaceLocation = (data) => {
     const clarifaiFace =
@@ -63,13 +63,17 @@ function App() {
   };
 
   const onRouteChange = (route) => {
+    if (route === 'signout') setIsSignedIn(false);
+    if (route === 'home') setIsSignedIn(true);
     setRoute(route);
   };
+
+  console.log('isSignedIn', isSignedIn);
 
   return (
     <div className="App">
       <Particles className="particles" params={particlesOptions} />
-      <Navigation onRouteChange={onRouteChange} />
+      <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
       {route === "home" ? (
         <div>
           <Logo />

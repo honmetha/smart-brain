@@ -11,7 +11,7 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
         }}
       >
         <p
-          onClick={() => onRouteChange("signin")}
+          onClick={() => onRouteChange("signout")}
           style={{ cursor: "pointer" }}
         >
           Sign Out
@@ -29,9 +29,9 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
       >
         <p
           onClick={() => onRouteChange("signin")}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", marginRight: "1rem" }}
         >
-          Sign in
+          Signin
         </p>
         <p
           onClick={() => onRouteChange("register")}
