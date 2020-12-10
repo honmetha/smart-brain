@@ -68,8 +68,6 @@ function App() {
     setRoute(route);
   };
 
-  console.log('isSignedIn', isSignedIn);
-
   return (
     <div className="App">
       <Particles className="particles" params={particlesOptions} />
