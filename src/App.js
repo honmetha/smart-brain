@@ -30,6 +30,7 @@ function App() {
   const [box, setBox] = useState({});
   const [route, setRoute] = useState("signin");
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [, setUser] = useState({});
 
   const calculateFaceLocation = (data) => {
     const clarifaiFace =
@@ -44,6 +45,17 @@ function App() {
       rightCol: width - clarifaiFace.right_col * width,
       bottomRow: height - clarifaiFace.bottom_row * height,
     };
+  };
+
+  const loadUser = (data) => {
+    setUser({
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      entries: data.entries,
+      joined: data.joined,
+    });
   };
 
   const displayFaceBox = (box) => {
@@ -63,8 +75,8 @@ function App() {
   };
 
   const onRouteChange = (route) => {
-    if (route === 'signout') setIsSignedIn(false);
-    if (route === 'home') setIsSignedIn(true);
+    if (route === "signout") setIsSignedIn(false);
+    if (route === "home") setIsSignedIn(true);
     setRoute(route);
   };
 
@@ -85,7 +97,7 @@ function App() {
       ) : route === "signin" ? (
         <Signin onRouteChange={onRouteChange} />
       ) : (
-        <Register onRouteChange={onRouteChange} />
+        <Register loadUser={loadUser} onRouteChange={onRouteChange} />
       )}
     </div>
   );
