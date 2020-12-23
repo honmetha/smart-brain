@@ -9,6 +9,7 @@ import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
+import Axios from "axios";
 
 const app = new Clarifai.App({ apiKey: "6eba621f55704ccb9b69296fee0c1156" });
 
@@ -30,7 +31,7 @@ function App() {
   const [box, setBox] = useState({});
   const [route, setRoute] = useState("signin");
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [, setUser] = useState({});
+  const [user, setUser] = useState({});
 
   const calculateFaceLocation = (data) => {
     const clarifaiFace =
@@ -66,11 +67,14 @@ function App() {
     setInput(e.target.value);
   };
 
-  const onButtonSubmit = () => {
+  const onPictureSubmit = () => {
     setImageUrl(input);
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, input)
-      .then((response) => displayFaceBox(calculateFaceLocation(response)))
+      .then((response) => {
+        if (response) Axios.put("http://localhost:3000/image", { id: user.id });
+        displayFaceBox(calculateFaceLocation(response));
+      })
       .catch((err) => console.log(err));
   };
 
@@ -87,15 +91,15 @@ function App() {
       {route === "home" ? (
         <div>
           <Logo />
-          <Rank />
+          <Rank name={user.name} entries={user.entries} />
           <ImageLinkForm
             onInputChange={onInputChange}
-            onButtonSubmit={onButtonSubmit}
+            onPictureSubmit={onPictureSubmit}
           />
           <FaceRecognition box={box} imageUrl={imageUrl} />
         </div>
       ) : route === "signin" ? (
-        <Signin onRouteChange={onRouteChange} />
+        <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
       ) : (
         <Register loadUser={loadUser} onRouteChange={onRouteChange} />
       )}

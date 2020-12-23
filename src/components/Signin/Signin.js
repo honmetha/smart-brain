@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-const Signin = ({ onRouteChange }) => {
+const Signin = ({ onRouteChange, loadUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,8 +13,11 @@ const Signin = ({ onRouteChange }) => {
       password,
     })
       .then((res) => res.data)
-      .then((data) => {
-        if (data === "success") onRouteChange("home");
+      .then((user) => {
+        if (user.id) {
+          loadUser(user);
+          onRouteChange("home");
+        }
       })
       .catch((error) => console.log(error.message));
   };
