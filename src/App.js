@@ -71,8 +71,13 @@ function App() {
     setImageUrl(input);
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, input)
-      .then((response) => {
-        if (response) Axios.put("http://localhost:3000/image", { id: user.id });
+      .then(async (response) => {
+        if (response) {
+          const result = await Axios.put("http://localhost:3000/image", {
+            id: user.id,
+          });
+          setUser({ ...user, entries: result.data });
+        }
         displayFaceBox(calculateFaceLocation(response));
       })
       .catch((err) => console.log(err));
